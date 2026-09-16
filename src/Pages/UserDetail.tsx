@@ -5,10 +5,10 @@ function UserDetail() {
   const { id } = useParams<{ id: string }>();
   const userList = (usersData as any).users || usersData;
 
-  // 1. Utilisateur de la page consultée
+  
   const targetUser = userList.find((u: any) => String(u.id) === String(id));
 
-  // 2. Utilisateur actuellement connecté
+  
   const currentUser = JSON.parse(localStorage.getItem('user') || 'null');
 
   if (!targetUser) {
@@ -20,7 +20,7 @@ function UserDetail() {
     );
   }
 
-  // 3. Vérification : est-ce qu'on regarde notre propre profil ?
+  
   const isOwnProfile = currentUser && String(currentUser.id) === String(targetUser.id);
 
   const avatarUrl =
@@ -38,10 +38,10 @@ function UserDetail() {
     return String(value);
   };
 
-  // Clés toujours masquées (identifiants techniques et sécurité absolue)
+  
   const systemKeys = ['id', 'username', 'avatar', 'profilePicture', 'image', 'password'];
 
-  // Clés privées (masquées aux tiers, mais visibles par soi-même)
+  
   const privateKeys = ['birthDate', 'address', 'company', 'gender', 'phone', 'age'];
 
   return (
@@ -61,12 +61,12 @@ function UserDetail() {
 
         <div className="user-details-body">
           {Object.entries(targetUser).map(([key, value]) => {
-            // Ignorer les identifiants techniques et le mot de passe
+            
             if (systemKeys.includes(key) || value === undefined || value === null) {
               return null;
             }
 
-            // Si c'est une donnée privée et qu'on N'EST PAS sur son propre profil => On la masque
+            
             if (!isOwnProfile && privateKeys.includes(key)) {
               return null;
             }
