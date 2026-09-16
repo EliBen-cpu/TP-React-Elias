@@ -8,18 +8,26 @@ function Login() {
   const navigate = useNavigate()
 
   function seConnecter() {
-    const liste = (usersData as any).users
+   
+    const liste = Array.isArray(usersData)
+      ? usersData
+      : (usersData as any).users || (usersData as any).default || []
+
+    const cleanUsername = username.trim()
+    const cleanPassword = password.trim()
+
+    
+    console.log('Tentative avec :', { cleanUsername, cleanPassword })
+    console.log('Données chargées :', liste)
 
     for (let i = 0; i < liste.length; i++) {
-      if (liste[i].username === username && liste[i].password === password) {
-        
+      if (liste[i].username === cleanUsername && liste[i].password === cleanPassword) {
         localStorage.setItem('user', JSON.stringify(liste[i]))
         navigate('/profile')
         return
       }
     }
 
-    
     alert('Identifiants incorrects')
   }
 

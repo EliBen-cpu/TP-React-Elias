@@ -1,28 +1,33 @@
-import { Link } from 'react-router'
+import { useNavigate } from 'react-router'
 
 function Profile() {
+  const navigate = useNavigate()
   
-  const savedUser = localStorage.getItem('user')
+  
+  const user = JSON.parse(localStorage.getItem('user') || 'null')
 
-  
-  if (!savedUser) {
+  const seDeconnecter = () => {
+    localStorage.removeItem('user') 
+    navigate('/login')              
+  }
+
+  if (!user) {
     return (
       <div>
-        <h2>Vous n'êtes pas connecté.</h2>
-        <Link to="/login">Aller à la page de connexion</Link>
+        <h2>Vous n'êtes pas connecté</h2>
+        <button onClick={() => navigate('/login')}>Aller à la page de connexion</button>
       </div>
     )
   }
 
-  
-  const user = JSON.parse(savedUser)
-
   return (
     <div>
       <h1>Mon Profil</h1>
-      <p><strong>Prénom :</strong> {user.firstName}</p>
-      <p><strong>Nom :</strong> {user.lastName}</p>
-      <p><strong>Nom d'utilisateur :</strong> {user.username}</p>
+      <p>Bienvenue, {user.username} !</p>
+      
+      <button onClick={seDeconnecter} style={{ marginTop: '20px' }}>
+        Se déconnecter
+      </button>
     </div>
   )
 }
