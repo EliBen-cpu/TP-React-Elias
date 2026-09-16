@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { createBrowserRouter, RouterProvider, Link, Outlet } from 'react-router'
-
+import './index.css'
 
 import Home from './Pages/Home'
 import RecipeDetail from './Pages/RecipeDetail'
