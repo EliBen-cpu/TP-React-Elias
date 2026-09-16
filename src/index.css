@@ -1,14 +1,14 @@
 :root {
-  /* Palette Blanc & Doré — le doré n'apparaît que sur les bordures des box */
-  --text: #333333;            /* Gris très foncé pour le texte */
-  --text-h: #111111;          /* Noir pour les titres */
-  --bg: #e4d7cc;              /* Blanc pur */
-  --border: #d4af37;          /* Doré — utilisé UNIQUEMENT pour les bordures statiques */
-  --code-bg: #f5f5f5;         /* Gris très clair */
+  
+  --text: #333333;            
+  --text-h: #111111;          
+  --bg: #e4d7cc;              
+  --border: #d4af37;          
+  --code-bg: #f5f5f5;         
 
-  /* Survol & animations : toujours foncées, jamais dorées */
-  --hover-bg: #1a1a1a;        /* Fond foncé au survol */
-  --hover-text: #ffffff;      /* Texte blanc au survol */
+  
+  --hover-bg: #1a1a1a;       
+  --hover-text: #ffffff;      
   --shadow:
     rgba(0, 0, 0, 0.06) 0 8px 16px -2px, rgba(0, 0, 0, 0.04) 0 4px 6px -2px;
   --shadow-hover:
@@ -33,7 +33,7 @@
   }
 }
 
-/* Animation d'apparition au chargement — pas de couleur, donc pas de doré */
+
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -50,7 +50,7 @@
   max-width: 100%;
   margin: 0 auto;
   text-align: center;
-  border-inline: 1px solid var(--border); /* bordure dorée statique */
+  border-inline: 1px solid var(--border); 
   min-height: 100svh;
   display: flex;
   flex-direction: column;
@@ -108,13 +108,13 @@ code {
   background: var(--code-bg);
 }
 
-/* Barre de navigation : bordure dorée fixe, survol toujours foncé */
+
 nav {
   display: flex;
   justify-content: center;
   gap: 24px;
   padding: 20px;
-  border-bottom: 1px solid var(--border); /* bordure dorée */
+  border-bottom: 1px solid var(--border); 
   background: var(--bg);
 }
 
@@ -129,23 +129,23 @@ nav a {
 
 nav a:hover {
   color: var(--hover-text);
-  background-color: var(--hover-bg); /* survol foncé, pas de doré */
+  background-color: var(--hover-bg); 
 }
 
-/* Cartes de recettes : bordure dorée fixe, ombre/animation au survol toujours foncée */
+
 div[style*="width: 250px"] {
   background-color: var(--bg);
-  border: 1.5px solid var(--border) !important; /* bordure dorée */
+  border: 1.5px solid var(--border) !important; 
   box-shadow: var(--shadow);
   transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease-in-out;
 }
 
 div[style*="width: 250px"]:hover {
   transform: translateY(-6px);
-  box-shadow: var(--shadow-hover); /* ombre foncée accentuée, jamais dorée */
+  box-shadow: var(--shadow-hover); 
 }
 
-/* Zoom fluide sur les images au survol (aucune couleur, donc aucun doré) */
+
 div[style*="width: 250px"] img {
   transition: transform 0.3s ease-in-out;
 }
@@ -154,10 +154,10 @@ div[style*="width: 250px"]:hover img {
   transform: scale(1.03);
 }
 
-/* Formulaires et boutons : bordure dorée statique, interactions foncées */
+
 input {
   background: var(--code-bg);
-  border: 1px solid var(--border); /* bordure dorée */
+  border: 1px solid var(--border); 
   color: var(--text-h);
   padding: 10px 14px;
   border-radius: 6px;
@@ -167,11 +167,11 @@ input {
 }
 
 input:focus {
-  border-color: var(--hover-bg); /* focus foncé, pas doré */
+  border-color: var(--hover-bg); 
 }
 
 button {
-  background-color: var(--text-h); /* bouton foncé */
+  background-color: var(--text-h); 
   color: var(--bg);
   border: none;
   padding: 10px 18px;
