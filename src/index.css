@@ -1,0 +1,195 @@
+:root {
+  /* Palette Blanc & Doré — le doré n'apparaît que sur les bordures des box */
+  --text: #333333;            /* Gris très foncé pour le texte */
+  --text-h: #111111;          /* Noir pour les titres */
+  --bg: #e4d7cc;              /* Blanc pur */
+  --border: #d4af37;          /* Doré — utilisé UNIQUEMENT pour les bordures statiques */
+  --code-bg: #f5f5f5;         /* Gris très clair */
+
+  /* Survol & animations : toujours foncées, jamais dorées */
+  --hover-bg: #1a1a1a;        /* Fond foncé au survol */
+  --hover-text: #ffffff;      /* Texte blanc au survol */
+  --shadow:
+    rgba(0, 0, 0, 0.06) 0 8px 16px -2px, rgba(0, 0, 0, 0.04) 0 4px 6px -2px;
+  --shadow-hover:
+    rgba(0, 0, 0, 0.25) 0 16px 24px -4px, rgba(0, 0, 0, 0.12) 0 8px 10px -4px;
+
+  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
+  --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
+  --mono: ui-monospace, Consolas, monospace;
+
+  font: 18px/145% var(--sans);
+  letter-spacing: 0.18px;
+  color-scheme: light;
+  color: var(--text);
+  background: var(--bg);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  @media (max-width: 1024px) {
+    font-size: 16px;
+  }
+}
+
+/* Animation d'apparition au chargement — pas de couleur, donc pas de doré */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+#root {
+  width: 1126px;
+  max-width: 100%;
+  margin: 0 auto;
+  text-align: center;
+  border-inline: 1px solid var(--border); /* bordure dorée statique */
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+body {
+  margin: 0;
+}
+
+h1,
+h2 {
+  font-family: var(--heading);
+  font-weight: 500;
+  color: var(--text-h);
+}
+
+h1 {
+  font-size: 56px;
+  letter-spacing: -1.68px;
+  margin: 32px 0;
+  @media (max-width: 1024px) {
+    font-size: 36px;
+    margin: 20px 0;
+  }
+}
+
+h2 {
+  font-size: 24px;
+  line-height: 118%;
+  letter-spacing: -0.24px;
+  margin: 0 0 8px;
+  @media (max-width: 1024px) {
+    font-size: 20px;
+  }
+}
+
+p {
+  margin: 0;
+}
+
+code,
+.counter {
+  font-family: var(--mono);
+  display: inline-flex;
+  border-radius: 4px;
+  color: var(--text-h);
+}
+
+code {
+  font-size: 15px;
+  line-height: 135%;
+  padding: 4px 8px;
+  background: var(--code-bg);
+}
+
+/* Barre de navigation : bordure dorée fixe, survol toujours foncé */
+nav {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  padding: 20px;
+  border-bottom: 1px solid var(--border); /* bordure dorée */
+  background: var(--bg);
+}
+
+nav a {
+  text-decoration: none;
+  color: var(--text);
+  font-weight: 500;
+  padding: 6px 12px;
+  border-radius: 6px;
+  transition: all 0.2s ease-in-out;
+}
+
+nav a:hover {
+  color: var(--hover-text);
+  background-color: var(--hover-bg); /* survol foncé, pas de doré */
+}
+
+/* Cartes de recettes : bordure dorée fixe, ombre/animation au survol toujours foncée */
+div[style*="width: 250px"] {
+  background-color: var(--bg);
+  border: 1.5px solid var(--border) !important; /* bordure dorée */
+  box-shadow: var(--shadow);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease-in-out;
+}
+
+div[style*="width: 250px"]:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-hover); /* ombre foncée accentuée, jamais dorée */
+}
+
+/* Zoom fluide sur les images au survol (aucune couleur, donc aucun doré) */
+div[style*="width: 250px"] img {
+  transition: transform 0.3s ease-in-out;
+}
+
+div[style*="width: 250px"]:hover img {
+  transform: scale(1.03);
+}
+
+/* Formulaires et boutons : bordure dorée statique, interactions foncées */
+input {
+  background: var(--code-bg);
+  border: 1px solid var(--border); /* bordure dorée */
+  color: var(--text-h);
+  padding: 10px 14px;
+  border-radius: 6px;
+  font-family: var(--sans);
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+input:focus {
+  border-color: var(--hover-bg); /* focus foncé, pas doré */
+}
+
+button {
+  background-color: var(--text-h); /* bouton foncé */
+  color: var(--bg);
+  border: none;
+  padding: 10px 18px;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.15s ease, opacity 0.2s ease;
+}
+
+button:hover {
+  opacity: 0.85;
+  transform: translateY(-1px);
+}
+
+button:active {
+  transform: translateY(0);
+}
+
+img {
+  border: 2px solid #FFFFFF;
+}
